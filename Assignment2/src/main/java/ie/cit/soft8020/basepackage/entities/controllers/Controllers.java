@@ -1,4 +1,5 @@
-package basepackage.controllers;
+package ie.cit.soft8020.basepackage.entities.controllers;
+
 
 import java.util.List;
 
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import basepackage.entities.Person;
-import basepackage.repositories.PersonRepo;
+import ie.cit.soft8020.basepackage.entities.Person;
+import ie.cit.soft8020.basepackage.entities.repositories.PersonRepo;
 
 @Controller
 public class Controllers {
@@ -22,7 +23,19 @@ public class Controllers {
 	@GetMapping("/")
 	public String doWelcomeWithParams(Model model)
 	{
+		return "loginPage";
+	}
+	
+	@GetMapping("/index")
+	public String getindex(Model model)
+	{
 		return "index";
+	}
+	
+	@GetMapping("/PresetPackagesPage")
+	public String presetPackagepageget(Model model)
+	{
+		return "PresetPackagesPage";
 	}
 	/*
 	 * An example of using a path variable.
@@ -30,7 +43,7 @@ public class Controllers {
 	 * localhost:8080/usingParameter uses the default value of To You!
 	 */
 	@GetMapping("/usingParameter")
-	public String doWelcomeWithParams(@RequestParam(value="name", defaultValue="To You!")String name, Model model)
+	public String doWelcomeWithParams(@RequestParam(value="name", defaultValue="To you!")String name, Model model)
 	{
 		String sentence = "Welcome " + name;
 		model.addAttribute("message", sentence);
@@ -63,4 +76,6 @@ public class Controllers {
 		model.addAttribute("person", p);
 		return "displayOne";
 	}
+
 }
+
