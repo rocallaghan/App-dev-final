@@ -12,16 +12,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Flower {
 	@Id
-	int id;
+	String id;
 	
 	String name;
 	String colour;
 	int price;
-	public int getId() {
+	int quantity;
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	public String getName() {
 		return name;
@@ -41,9 +48,10 @@ public class Flower {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Flower(int id, String name, String colour, int price) {
+	public Flower(String id, String name, String colour, int price,int quantity) {
 		super();
 		this.id = id;
+		this.quantity = quantity;
 		this.name = name;
 		this.colour = colour;
 		this.price = price;
