@@ -22,9 +22,9 @@ public class DataLoader implements ApplicationRunner{
 		personRepo.save(new Person(2,"Daisy Duck", 50, "daisy@cit.ie"));
 		personRepo.save(new Person(3,"Gru", 56, "gru@cit.ie"));
 		
-		flowerRepo.save(new Flower(1,"Rose", "test", 10));
-		flowerRepo.save(new Flower(2,"Tulip", "test2", 10));
-		flowerRepo.save(new Flower(3,"Lilly", "test3", 10));
+		flowerRepo.save(new Flower("1","Rose", "test", 10,5));
+		flowerRepo.save(new Flower("2","Tulip", "test2", 10,5));
+		flowerRepo.save(new Flower("3","Lilly", "test3", 10,5));
 	}
 //	
 //	public void saveNewPerson() throws Exception
