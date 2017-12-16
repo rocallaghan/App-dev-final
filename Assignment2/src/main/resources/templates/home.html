@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flowers</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body class="text-center" background="/images/flowersback.jpg" style="background-size: 100%">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+<h2>Welcome to P Florists</h2>
+<h6>Please Login to continue</h6>
+    <div style="margin-top:50px">
+        <a style="margin:20px" class="btn btn-rounded btn-warning btn-lg" th:href="@{/adminIndex}">Login as Admin</a>
+        <a style="margin:20px" class="btn btn-rounded btn-warning btn-lg" th:href="@{/index}">Login as User</a>
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+</body>
+</html>

@@ -20,17 +20,44 @@ public class Controllers {
 	/**
 	 * Calls index.html
 	 */
-	@GetMapping("/")
-	public String doWelcomeWithParams(Model model)
-	{
-		return "loginPage";
-	}
-	
-	@GetMapping("/index")
-	public String getindex(Model model)
-	{
-		return "index";
-	}
+	 @GetMapping("/")
+	    public String home1() {
+	        return "/home";
+	    }
+
+	    @GetMapping("/home")
+	    public String home() {
+	        return "/home";
+	    }
+
+	    @GetMapping("/index")
+	    public String user() {
+	        return "/index";
+	    }
+
+	   
+	    
+	    @GetMapping("/adminIndex")
+	    public String adminIndex() {
+	        return "/adminIndex";
+	    }
+
+
+	    @GetMapping("/about")
+	    public String about() {
+	        return "/about";
+	    }
+
+	    @GetMapping("/login")
+	    public String login() {
+	        return "/loginPage";
+	    }
+
+	    @GetMapping("/403")
+	    public String error403() {
+	        return "/error/403";
+	    }
+
 	
 	@GetMapping("/PresetPackagesPage")
 	public String presetPackagepageget(Model model)
@@ -78,4 +105,5 @@ public class Controllers {
 	}
 
 }
+
 
