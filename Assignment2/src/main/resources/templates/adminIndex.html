@@ -13,6 +13,54 @@
 </head>
 <body class="text-center" background="/images/flowersback.jpg" style="background-size: 100%">
 <div th:replace="fragments/header :: header"/>
+<div class="bg-light text-dark" style="margin:50px" >
+<ul class="nav nav-pills">
+  <li class="active"><a data-toggle="pill" href="#flowers">Flowers</a></li>
+  <li><a data-toggle="pill" href="#orders">Orders</a></li>
+  <li><a data-toggle="pill" href="#users">Users</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="flowers" class="tab-pane fade in active">
+    <h1>Flowers in Database</h1>
+<table class="table table-striped table-hover table-bordered table-primary">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Colour</th>
+		<th>Price</th>
+	</tr>
+	<tr th:each="flower : ${flower}">
+		<td th:text="${flower.id}">ID</td>
+		<td th:text="${flower.name}">NAME</td>
+		<td th:text="${flower.colour}">COLOUR</td>
+		<td th:text="${flower.price}">PRICE PER ONE</td>
+	</tr>
+</table>
+  </div>
+  <div id="orders" class="tab-pane fade">
+    <h3>Orders</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="users" class="tab-pane fade">
+   <h1>People in Database</h1>
+<table  class="table table-striped table-hover table-bordered table-primary">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Age</th>
+		<th>Email Address</th>
+	</tr>
+	<tr th:each="person : ${people}">
+		<td th:text="${person.id}">ID</td>
+		<td th:text="${person.name}">NAME</td>
+		<td th:text="${person.age}">AGE</td>
+		<td th:text="${person.emailAddress}">EMAIL ADDRESS</td>
+	</tr>
+</table>
+  </div>
+</div>
+</div>
 	
 </body>
 </html>

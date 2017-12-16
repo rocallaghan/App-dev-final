@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ie.cit.soft8020.basepackage.entities.Flower;
 import ie.cit.soft8020.basepackage.entities.Person;
+import ie.cit.soft8020.basepackage.entities.repositories.FlowerRepo;
 import ie.cit.soft8020.basepackage.entities.repositories.PersonRepo;
 
 @Controller
 public class Controllers {
 	@Autowired
 	PersonRepo personRepo;
+	@Autowired
+	FlowerRepo flowerRepo;
 	/**
 	 * Calls index.html
 	 */
@@ -38,7 +42,11 @@ public class Controllers {
 	   
 	    
 	    @GetMapping("/adminIndex")
-	    public String adminIndex() {
+	    public String adminIndex(Model model) {
+	    	List<Person> p = personRepo.findAll();
+			model.addAttribute("people", p);
+			List<Flower> f = flowerRepo.findAll();
+			model.addAttribute("flower", f);
 	        return "/adminIndex";
 	    }
 
@@ -87,6 +95,8 @@ public class Controllers {
 	{
 		List<Person> p = personRepo.findAll();
 		model.addAttribute("people", p);
+		List<Flower> f = flowerRepo.findAll();
+		model.addAttribute("flower", f);
 		return "displayAll";
 	}
 	/*
