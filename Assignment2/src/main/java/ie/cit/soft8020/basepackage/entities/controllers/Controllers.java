@@ -1,4 +1,5 @@
-package basepackage.controllers;
+package ie.cit.soft8020.basepackage.entities.controllers;
+
 
 import java.util.List;
 
@@ -9,20 +10,67 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import basepackage.entities.Person;
-import basepackage.repositories.PersonRepo;
+import ie.cit.soft8020.basepackage.entities.Flower;
+import ie.cit.soft8020.basepackage.entities.Person;
+import ie.cit.soft8020.basepackage.entities.repositories.FlowerRepo;
+import ie.cit.soft8020.basepackage.entities.repositories.PersonRepo;
 
 @Controller
 public class Controllers {
 	@Autowired
 	PersonRepo personRepo;
+	@Autowired
+	FlowerRepo flowerRepo;
 	/**
 	 * Calls index.html
 	 */
-	@GetMapping("/")
-	public String doWelcomeWithParams(Model model)
+	 @GetMapping("/")
+	    public String home1() {
+	        return "/home";
+	    }
+
+	    @GetMapping("/home")
+	    public String home() {
+	        return "/home";
+	    }
+
+	    @GetMapping("/index")
+	    public String user() {
+	        return "/index";
+	    }
+
+	   
+	    
+	    @GetMapping("/adminIndex")
+	    public String adminIndex(Model model) {
+	    	List<Person> p = personRepo.findAll();
+			model.addAttribute("people", p);
+			List<Flower> f = flowerRepo.findAll();
+			model.addAttribute("flower", f);
+	        return "/adminIndex";
+	    }
+
+
+	    @GetMapping("/about")
+	    public String about() {
+	        return "/about";
+	    }
+
+	    @GetMapping("/login")
+	    public String login() {
+	        return "/loginPage";
+	    }
+
+	    @GetMapping("/403")
+	    public String error403() {
+	        return "/error/403";
+	    }
+
+	
+	@GetMapping("/PresetPackagesPage")
+	public String presetPackagepageget(Model model)
 	{
-		return "index";
+		return "PresetPackagesPage";
 	}
 	/*
 	 * An example of using a path variable.
@@ -30,7 +78,7 @@ public class Controllers {
 	 * localhost:8080/usingParameter uses the default value of To You!
 	 */
 	@GetMapping("/usingParameter")
-	public String doWelcomeWithParams(@RequestParam(value="name", defaultValue="To You!")String name, Model model)
+	public String doWelcomeWithParams(@RequestParam(value="name", defaultValue="To you!")String name, Model model)
 	{
 		String sentence = "Welcome " + name;
 		model.addAttribute("message", sentence);
@@ -47,6 +95,8 @@ public class Controllers {
 	{
 		List<Person> p = personRepo.findAll();
 		model.addAttribute("people", p);
+		List<Flower> f = flowerRepo.findAll();
+		model.addAttribute("flower", f);
 		return "displayAll";
 	}
 	/*
@@ -63,4 +113,7 @@ public class Controllers {
 		model.addAttribute("person", p);
 		return "displayOne";
 	}
+
 }
+
+
