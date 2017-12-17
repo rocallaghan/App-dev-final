@@ -20,6 +20,7 @@ import ie.cit.soft8020.basepackage.entities.Person;
 import ie.cit.soft8020.basepackage.entities.Package;
 import ie.cit.soft8020.basepackage.entities.CustomerOrder;
 import ie.cit.soft8020.basepackage.entities.repositories.FlowerRepo;
+import ie.cit.soft8020.basepackage.entities.repositories.PackageRepo;
 import ie.cit.soft8020.basepackage.entities.repositories.OrdersRepo;
 import ie.cit.soft8020.basepackage.entities.repositories.PersonRepo;
 import ie.cit.soft8020.basepackage.utils.Worker;
@@ -30,6 +31,8 @@ public class Controllers {
 	PersonRepo personRepo;
 	@Autowired
 	FlowerRepo flowerRepo;
+	@Autowired
+	PackageRepo packRepo;
 	@Autowired
 	OrdersRepo orderRepo;
 	/**
@@ -60,6 +63,8 @@ public class Controllers {
 	    public String adminIndex(Model model) {
 	    	List<Person> p = personRepo.findAll();
 			model.addAttribute("people", p);
+			List<Package>pack = packRepo.findAll();
+			model.addAttribute("package",pack);
 			List<Flower> f = flowerRepo.findAll();
 			model.addAttribute("flower", f);
 			List<CustomerOrder> o = orderRepo.findAll();
@@ -105,52 +110,18 @@ public class Controllers {
 		return "parameter";
 	}
 	
-	@GetMapping("/CustomPackage")
+	@GetMapping("/customPackage")
 	public String CustomPackage(Model model)
 	{
-		
-		model.addAttribute("Package",new Package());
-		model.addAttribute("Flowers",worker.getFlowers());
-		return "CustomPackage";
-	}
-	@PostMapping("/CustomPackage")
-	public String CustomPackage(Package p )
-	{
-		worker.addCustomPackageToCart(p);
-		return "redirect:/Cart";	
+		return "customPackage";
 	}
 	
 	@GetMapping("/Cart")
 	public String Cart(Model model)
 	{
-		model.addAttribute("Cart", worker.getCart());
 		return "Cart";
 	}
-	@GetMapping("/Cart/Checkout")
-	public String Checkout(CustomerOrder customerOrder,Model m)
-	{
-		return "Checkout";
-	}
-	@PostMapping("/Cart/Checkout")
-	public String CheckoutPost(@Valid CustomerOrder ord,BindingResult bindingResult)
-	{
-		if (bindingResult.hasErrors())
-			return "Checkout"; 
-		worker.makeOrder(ord);
-		return "redirect:/";
-	}
-	@PostMapping("/Cart/AddPackage")
-	public String addToCart(Package pack)
-	{
-		worker.addToShoppingCart(pack);
-		return "redirect:/Cart";	
-	}
-	@GetMapping("/Cart/deletePackage/{packageId}")
-	public String deletePackage(@PathVariable String packageId)
-	{
-		worker.removeFromCart(packageId);
-		return "redirect:/Cart";
-	}
+
 	/*
 	 * The repository uses the in-built findAll() method of MongoRepository
 	 * This returns a list of People
@@ -162,6 +133,8 @@ public class Controllers {
 	{
 		List<Person> p = personRepo.findAll();
 		model.addAttribute("people", p);
+		List<Package>pack = packRepo.findAll();
+		model.addAttribute("package",pack);
 		List<Flower> f = flowerRepo.findAll();
 		model.addAttribute("flower", f);
 		return "displayAll";
