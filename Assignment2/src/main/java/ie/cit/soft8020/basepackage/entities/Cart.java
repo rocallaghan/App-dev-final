@@ -1,71 +1,46 @@
 package ie.cit.soft8020.basepackage.entities;
 
 import java.util.ArrayList;
-
 import org.springframework.stereotype.Component;
+
 @Component
 public class Cart {
-
-	
-	
-	private ArrayList<Package> packages;
-	private double totalCost;
-	
-	
+	ArrayList<Package> listOfPackages;
+	int cost;
+	boolean isFinished;
 	
 	public Cart() {
-		packages = new ArrayList<Package>();
-		totalCost=0;
+		listOfPackages = new ArrayList<Package>();
+		cost=0;
+	}
+	public ArrayList<Package> getListOfPackages() {
+		return listOfPackages;
+	}
+	public void setListOfPackages(ArrayList<Package> listOfPackages) {
+		this.listOfPackages = listOfPackages;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	
-	private void increaseCost(double amount)
-	{
-		totalCost +=amount;
+	public void addPackage(Package packageToAdd){//Add package to list and cost
+		listOfPackages.add(packageToAdd);
+		cost += packageToAdd.getPrice();
 	}
-	private void decreaseCost(double amount)
-	{
-		totalCost-=amount;
-	}
-	public void add(Package p)
-	{
-		increaseCost(p.getPrice());
-		this.packages.add(p);
-	}
-	public void removePackage(String id)
-	{
-		for(Package p : packages)
-		{
-			if(p.getId().equalsIgnoreCase(id))
-			{
-				decreaseCost(p.getPrice());
-				this.packages.remove(p);
-				break;
+	
+	public void removePackage(int id){//Remove package and cost from list
+		isFinished = false;//Changes to true when package is removed, leaving the while loop
+		while (isFinished = false){
+			for (Package packageToRemove : listOfPackages){
+				if (packageToRemove.getId() == id){
+					cost -= packageToRemove.getPrice();
+					listOfPackages.remove(packageToRemove);
+					isFinished = true;
+				}
 			}
 		}
 	}
-	
-	
-	
-	public ArrayList<Package> getPackages() {
-		return packages;
-	}
-	public void setPackages(ArrayList<Package> packages) {
-		this.packages = packages;
-	}
-	public double getTotalCost() {
-		return totalCost;
-	}
-	public void setTotalCost(double totalCost) {
-		this.totalCost = totalCost;
-	}
-	public boolean isEmpty()
-	{
-		return this.packages.isEmpty();
-	}
-	public void empty()
-	{
-		packages.clear();
-		totalCost=0;
-	}
-
 }

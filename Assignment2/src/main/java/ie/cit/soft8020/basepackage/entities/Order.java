@@ -8,49 +8,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Order {
 	@Id 
 	private String id;
-	private int florestId;
-	private String florestName;
 	private ArrayList<Flower> contents;
 	private double cost;
+	private int quantity;
 	
-	
-	
-	
-	
-	public Order(int florestId, String florestName, ArrayList<Flower> contents, double cost) {
-		this.florestId = florestId;
-		this.florestName = florestName;
-		this.contents = contents;
-		this.cost = cost;
-	}
 
-	public Order() {}
 	
-	public Order(String id,int florestId, String florestName, ArrayList<Flower> contents, double cost) {
+	
+	public Order(String id, ArrayList<Flower> contents, double cost,int quantity) {
 		this.id = id;
-		this.florestId=florestId;
-		this.florestName = florestName;
 		this.contents = contents;
 		this.cost = cost;
+		this.quantity = quantity;
 	}
 	
-	public int getFlorestId() {
-		return florestId;
-	}
-	public void setFlorestId(int florestId) {
-		this.florestId = florestId;
-	}
+
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getFlorestName() {
-		return florestName;
-	}
-	public void setFlorestName(String florestName) {
-		this.florestName = florestName;
 	}
 	public ArrayList<Flower> getContents() {
 		return contents;
@@ -64,15 +41,22 @@ public class Order {
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
 	@Override
 	public String toString() {
-		String order = "OrderId:"+this.id+"\nFlorest Id:"+this.florestId+"\nFlorest name:"+this.florestName+"\nContents:";
+		String order = "OrderId:"+this.id+"\nContents:";
 		for(Flower flower : this.contents)
 		{
 			order = order +"\n"+flower.toString();
 		}
-		order=order+"\nCost:"+this.cost;
+		order=order+"\nCost:"+this.cost + "\nQuantity: "+this.quantity;
 		return order;
 	}
 }
