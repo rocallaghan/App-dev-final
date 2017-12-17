@@ -21,7 +21,7 @@
 </ul>
 
 <div class="tab-content">
-  <div id="flowers" class="tab-pane fade in active">
+  <div id="flowers" class="tab-pane fade in active" style="background-color: lightblue;">
     <h1>Flowers in Database</h1>
 <table class="table table-striped table-hover table-bordered table-primary">
 	<tr>
@@ -38,12 +38,25 @@
 	</tr>
 </table>
   </div>
-  <div id="orders" class="tab-pane fade">
+  <div id="orders" class="tab-pane fade" style="background-color: lightblue;">
     <h3>Orders</h3>
-    <p>Some content in menu 1.</p>
+   <table class="table table-striped table-hover table-bordered table-primary">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Colour</th>
+		<th>Price</th>
+	</tr>
+	<tr th:each="order : ${order}">
+		<td th:text="${order.florestId}">ID</td>
+		<td th:text="${order.florestName}">NAME</td>
+		<td th:text="${order.contents}">COLOUR</td>
+		<td th:text="${order.cost}">PRICE PER ONE</td>
+	</tr>
+</table>
   </div>
-  <div id="users" class="tab-pane fade">
-   <h1>People in Database</h1>
+  <div id="users" class="tab-pane fade" style="background-color: lightblue;">
+   <h1>Users in system</h1>
 <table  class="table table-striped table-hover table-bordered table-primary">
 	<tr>
 		<th>ID</th>

@@ -9,13 +9,20 @@
 <body class="text-center" background="/images/flowersback.jpg" style="background-size: 100%">
 
 <div th:replace="fragments/header :: header"/>
-
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.eng}"></option>
+    <option value="fr" th:text="#{lang.fr}"></option>
+    <option value="de" th:text="#{lang.de}"></option>
+</select>
 <div class="container">
-<h2>Welcome to P Florists</h2>
-<h6>Please Login to continue</h6>
+<h2 th:text="#{greeting}"></h2>
+	
+<h6 th:text="#{loginmessage}"></h6>
     <div style="margin-top:50px">
-        <a style="margin:20px" class="btn btn-rounded btn-warning btn-lg" th:href="@{/adminIndex}">Login as Admin</a>
-        <a style="margin:20px" class="btn btn-rounded btn-warning btn-lg" th:href="@{/index}">Login as User</a>
+        <a th:text="#{adminlogin}" style="margin:20px" class="btn btn-rounded btn-warning btn-lg" th:href="@{/adminIndex}">Login as Admin</a>
+        <a th:text="#{userlogin}" style="margin:20px" class="btn btn-rounded btn-warning btn-lg" th:href="@{/index}">Login as User</a>
     </div>
 
 </div>
@@ -23,4 +30,16 @@
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        if (selectedOption != ''){
+            window.location.replace('home?lang=' + selectedOption);
+        }
+    });
+});
+</script>
 </html>

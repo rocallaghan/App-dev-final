@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ie.cit.soft8020.basepackage.entities.Flower;
+import ie.cit.soft8020.basepackage.entities.Order;
 import ie.cit.soft8020.basepackage.entities.Person;
 import ie.cit.soft8020.basepackage.entities.Package;
 import ie.cit.soft8020.basepackage.entities.CustomerOrder;
 import ie.cit.soft8020.basepackage.entities.repositories.FlowerRepo;
+import ie.cit.soft8020.basepackage.entities.repositories.OrdersRepo;
 import ie.cit.soft8020.basepackage.entities.repositories.PersonRepo;
 import ie.cit.soft8020.basepackage.utils.Worker;
 
@@ -28,6 +30,8 @@ public class Controllers {
 	PersonRepo personRepo;
 	@Autowired
 	FlowerRepo flowerRepo;
+	@Autowired
+	OrdersRepo orderRepo;
 	/**
 	 * Calls index.html
 	 */
@@ -58,8 +62,16 @@ public class Controllers {
 			model.addAttribute("people", p);
 			List<Flower> f = flowerRepo.findAll();
 			model.addAttribute("flower", f);
+			List<CustomerOrder> o = orderRepo.findAll();
+			model.addAttribute("order", o);
 	        return "/adminIndex";
 	    }
+	    
+	    @GetMapping("/403")
+	    public String error403() {
+	        return "/403";
+	    }
+
 
 
 	    @GetMapping("/about")
@@ -72,10 +84,7 @@ public class Controllers {
 	        return "/loginPage";
 	    }
 
-	    @GetMapping("/403")
-	    public String error403() {
-	        return "/error/403";
-	    }
+	 
 
 	
 	@GetMapping("/PresetPackagesPage")

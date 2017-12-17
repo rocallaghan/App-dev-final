@@ -1,4 +1,7 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <div th:fragment="header-css">
         <!-- this is header-css -->
@@ -21,8 +24,8 @@
                 </ul>
                 <ul class="text-primary text-right">
                  <span sec:authorize="isAuthenticated()">
-                | Logged user: <span sec:authentication="name"></span> |
-                Roles: <span sec:authentication="principal.authorities"></span> |
+                | Username: <span th:inline="text">'[[${#httpServletRequest.remoteUser}]]'</span> |
+                Role: <span th:inline="text">'[[${#httpServletRequest.remoteUser}]]'</span> |
                 <a th:href="@{/logout}">Sign Out</a>
                
             </span>
