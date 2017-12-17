@@ -48,13 +48,13 @@ public class Flower {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Flower(String id, String name, String colour, int price,int quantity) {
+	public Flower(String id, String name, String colour, int price) {
 		super();
 		this.id = id;
-		this.quantity = quantity;
 		this.name = name;
 		this.colour = colour;
 		this.price = price;
+	
 	} 	
 }
 

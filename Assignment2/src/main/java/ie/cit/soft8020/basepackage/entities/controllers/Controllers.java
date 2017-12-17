@@ -34,11 +34,7 @@ public class Controllers {
 	Worker worker;
 	
 	
-	@GetMapping("/")
-	public String doWelcomeWithParams(Model model)
-	{
-		return "loginPage";
-	}
+	
 	 @GetMapping("/")
 	    public String home1() {
 	        return "/home";

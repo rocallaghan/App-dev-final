@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-
 import ie.cit.soft8020.basepackage.entities.Cart;
 import ie.cit.soft8020.basepackage.entities.Flower;
 import ie.cit.soft8020.basepackage.entities.Order;
@@ -32,9 +31,9 @@ public class Worker {
 	Cart cart;
 	@Autowired
 	OrdersRepo orderRepo;
-	@Autowired
-	
+
 	private RestTemplate restTemplate;
+	
 	private String backendURI;
 	private final int FLOREST_ID=3; 
 	private final String FLOREST_NAME="Phillie's flowers";
