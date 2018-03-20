@@ -4,5 +4,8 @@ jdk:
   - oraclejdk8
 deploy: 
     app: ci-spring-boot
-    
 script: ant build
+branches:
+    only:
+        - master
+ant: run
